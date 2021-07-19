@@ -1,0 +1,46 @@
+.description {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: scroll;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+    transition: 300ms all;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+.description.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+    pointer-events: all;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+.descriptionContent {
+    height: auto;
+    width: 50%;
+    padding: 20px;
+    border-radius: 40px;
+    background-color: white;
+    margin-left: 250px;
+    transform: scale(0.9);
+    transition: 200ms all;
+    margin-top: 380px;
+    margin-bottom: 50px;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+
+.descriptionContent.active {
+    transform:  translateZ(0px)
+}
