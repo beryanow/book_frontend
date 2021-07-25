@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "./Title";
+import NewCard from "./NewCard";
 
 const ReactLazyPreload = importStatement => {
     const Component = React.lazy(importStatement);
@@ -11,7 +12,7 @@ const Card = ReactLazyPreload(() =>
     import("./Card")
 );
 
-function Cover({ books, setDescriptionActive, setSelectionBook }) {
+function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive }) {
     return (
         <div>
             <Title name={"Книжная полка"}/>
@@ -19,8 +20,12 @@ function Cover({ books, setDescriptionActive, setSelectionBook }) {
                 {books.map(book => <Card key={book.id}
                                          book={book}
                                          setDescriptionActive={setDescriptionActive}
-                                         setSelectionBook={setSelectionBook}/>
+                                         setSelectionBook={setSelectionBook}
+                                         setRemoveBookActive={setRemoveBookActive}
+                                         setCurrentBookId={setCurrentBookId}
+                                         setAddQuoteActive={setAddQuoteActive}/>
                 )}
+                <NewCard setAddBookActive={setAddBookActive}/>
             </div>
         </div>
     );

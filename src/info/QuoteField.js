@@ -2,7 +2,7 @@ import React from "react";
 
 function QuoteField({content}) {
     return (
-        <div className={"quote"}>
+        <div className={"quote transition"}>
             {content}
         </div>
     );
