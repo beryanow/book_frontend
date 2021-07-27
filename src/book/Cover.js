@@ -12,7 +12,7 @@ const Card = ReactLazyPreload(() =>
     import("./Card")
 );
 
-function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive }) {
+function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState }) {
     return (
         <div>
             <Title name={"Книжная полка"}/>
@@ -23,7 +23,10 @@ function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive
                                          setSelectionBook={setSelectionBook}
                                          setRemoveBookActive={setRemoveBookActive}
                                          setCurrentBookId={setCurrentBookId}
-                                         setAddQuoteActive={setAddQuoteActive}/>
+                                         setAddQuoteActive={setAddQuoteActive}
+                                         addNewQuote={addNewQuote}
+                                         setAddCritiqueActive={setAddCritiqueActive}
+                                         changeState={changeState}/>
                 )}
                 <NewCard setAddBookActive={setAddBookActive}/>
             </div>

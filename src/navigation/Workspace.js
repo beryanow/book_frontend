@@ -1,7 +1,7 @@
 import React from "react";
 import Cover from "../book/Cover";
 
-function Workspace({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive }) {
+function Workspace({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState }) {
     return (
         <div className={"workspace"}>
             {books ? <Cover books={books}
@@ -10,7 +10,10 @@ function Workspace({ books, setDescriptionActive, setSelectionBook, setAddBookAc
                             setAddBookActive={setAddBookActive}
                             setRemoveBookActive={setRemoveBookActive}
                             setCurrentBookId={setCurrentBookId}
-                            setAddQuoteActive={setAddQuoteActive}/> : null}
+                            setAddQuoteActive={setAddQuoteActive}
+                            addNewQuote={addNewQuote}
+                            setAddCritiqueActive={setAddCritiqueActive}
+                            changeState={changeState}/> : null}
         </div>
     );
 }

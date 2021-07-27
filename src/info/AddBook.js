@@ -6,7 +6,7 @@ import InputFileField from "./InputFileField";
 function AddBook({ addNewBook, uploadImage }) {
     return (
         <div className={"addBook"}>
-            <InfoTitle className={"infoTitle"} name={'Новая книга'}/>
+            <InfoTitle className={"optionTitle"} name={'Новая книга'}/>
             <InfoTitle className={"bookField"} name={'Название'}/>
             <InputField id={"bookFieldName"}/>
             <InfoTitle className={"bookField"} name={'Автор'}/>

@@ -9,7 +9,7 @@ function Sidebar() {
         <Selection name={"Желания"} buttonImage={"/desires.png"}/>
         <Selection name={"Избранное"} buttonImage={"/favourite.png"}/>
         <Selection name={"Прочитанное"} buttonImage={"/read.png"}/>
-        <Selection name={"Отложенное"} buttonImage={"/timed.png"}/>
+        <Selection name={"Текущее"} buttonImage={"/timed.png"}/>
         <Selection name={"Цитаты"} buttonImage={"/quote.png"}/>
         <Selection name={"Оценки"} buttonImage={"/assessment.png"}/>
         <Selection name={"Рецензии"} buttonImage={"/reviews.png"}/>

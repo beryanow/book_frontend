@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import './styles/Book.css'
 import ActionBar from "./ActionBar";
 
-function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive }) {
+function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState }) {
     const [state, setState] = useState({ imageIsReady: false, imageSource: '' });
+    const background = localStorage.getItem(book.name + "_background");
+    const backgroundUrl = 'url(data:image/png;base64,' + background + ')';
 
     useEffect(() => {
         const img = new Image();
@@ -16,7 +18,7 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
     return (
         <div className={"cover"}>
             <div className={"card transition"}
-                 style={{ backgroundImage: 'url(' + state.imageSource + ')' }}
+                 style={{ backgroundImage: backgroundUrl }}
                  onClick={() => {
                      setDescriptionActive(true);
                      setSelectionBook(book);
@@ -30,7 +32,16 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
                 }}>
                     <img onClick={() => setRemoveBookActive(true)} src={"/removeLabel.png"}/>
                 </div>
-                <ActionBar setAddQuoteActive={setAddQuoteActive}/>
+                <ActionBar setAddQuoteActive={setAddQuoteActive}
+                           setAddCritiqueActive={setAddCritiqueActive}
+                           bookId={book.id}
+                           addNewQuote={addNewQuote}
+                           setCurrentBookId={setCurrentBookId}
+                           isBookRead={book.read.flag}
+                           isBookReading={book.reading.flag}
+                           isBookToRead={book.toRead.flag}
+                           isBookFavourite={book.favourite.flag}
+                           changeState={changeState}/>
             </div>
         </div>
     );

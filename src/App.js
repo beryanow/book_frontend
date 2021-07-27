@@ -10,6 +10,8 @@ import styled, { keyframes } from "styled-components";
 import { fadeIn } from "react-animations";
 import AddBook from "./info/AddBook";
 import RemoveBook from "./info/RemoveBook";
+import CreateQuote from "./option/CreateQuote";
+import CreateCritique from "./option/CreateCritique";
 
 const FadeIn = styled.div`animation: 800ms ${keyframes`${fadeIn}`} ease-in-out`
 
@@ -18,6 +20,10 @@ function fetchAllBooksData(setState) {
 
     axios.post(getAllBooksUrl).then((books) => {
         const booksFound = books.data;
+        books.data.forEach(book => {
+           downloadImage(book.name);
+        });
+
         setState({ books: booksFound });
     });
 }
@@ -29,16 +35,51 @@ function addNewBook(newBookState) {
     });
 }
 
-function removeBook(currentBookId) {
+function removeBook(currentBookIdState) {
     const removeBookUrl = 'http://localhost:8080/book/remove';
-    axios.post(removeBookUrl, currentBookId).then(() => {
+    axios.post(removeBookUrl, currentBookIdState).then(() => {
         window.location.reload();
     });
 }
 
+function addNewQuote(newQuoteState) {
+    const addNewQuoteUrl = 'http://localhost:8080/quote/add';
+    axios.post(addNewQuoteUrl, newQuoteState).then(() => {
+        window.location.reload();
+    });
+}
+
+function addNewCritique(newCritiqueState) {
+    const addNewCritiqueUrl = 'http://localhost:8080/critique/add';
+    axios.post(addNewCritiqueUrl, newCritiqueState).then(() => {
+        window.location.reload();
+    });
+}
+
+function changeState(flag, option, bookId) {
+    const changeStateUrl = 'http://localhost:8080/state/change';
+    axios.post(changeStateUrl, {flag, option, bookId}).then(() => {
+        window.location.reload();
+    });
+}
+
+function downloadImage(imageName) {
+    let imageBackgroundName = imageName + '_background';
+
+    if (localStorage.getItem(imageBackgroundName) === null) {
+        const addNewCritiqueUrl = 'http://localhost:8080/file/download/' + imageName + '.png';
+        axios.get(addNewCritiqueUrl, {
+            responseType: 'arraybuffer'
+        }).then((result) => {
+            localStorage.setItem(imageBackgroundName, Buffer.from(result.data, 'binary').toString('base64'));
+            console.log("Скачано изображение: " + imageName + ".png")
+        });
+    }
+}
+
 function uploadImage(image, name) {
-    var formData = new FormData();
-    var blob = image.slice(0, image.size, 'image/png');
+    const formData = new FormData();
+    const blob = image.slice(0, image.size, 'image/png');
     formData.append("file", new File([blob], name, {type: 'image/png'}));
 
     const uploadImageUrl = 'http://localhost:8080/file/upload';
@@ -54,8 +95,11 @@ function App() {
     const [addBookActive, setAddBookActive] = useState(false);
     const [removeBookActive, setRemoveBookActive] = useState(false);
     const [addQuoteActive, setAddQuoteActive] = useState(false);
+    const [addCritiqueActive, setAddCritiqueActive] = useState(false);
     const [selectionBook, setSelectionBook] = useState({});
     const [currentBookId, setCurrentBookId] = useState("");
+
+    downloadImage("Собор");
 
     useEffect(() => {
         fetchAllBooksData(setState);
@@ -92,6 +136,16 @@ function App() {
                 <ActionForm active={addQuoteActive}
                             setActive={setAddQuoteActive}
                             formType={"addQuoteForm"}>
+                    <CreateQuote addNewQuote={addNewQuote}
+                                 currentBookId={currentBookId}/>
+                </ActionForm>
+
+                {/* Окно добавления рецензии для книги */}
+                <ActionForm active={addCritiqueActive}
+                            setActive={setAddCritiqueActive}
+                            formType={"addCritiqueForm"}>
+                    <CreateCritique addNewCritique={addNewCritique}
+                                 currentBookId={currentBookId}/>
                 </ActionForm>
 
                 <Sidebar/>
@@ -101,7 +155,10 @@ function App() {
                            setAddBookActive={setAddBookActive}
                            setRemoveBookActive={setRemoveBookActive}
                            setCurrentBookId={setCurrentBookId}
-                           setAddQuoteActive={setAddQuoteActive}/>
+                           setAddQuoteActive={setAddQuoteActive}
+                           addNewQuote={addNewQuote}
+                           setAddCritiqueActive={setAddCritiqueActive}
+                           changeState={changeState}/>
             </FadeIn>
         </Suspense>
     );
