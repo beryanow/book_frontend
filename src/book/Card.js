@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react'
 import './styles/Book.css'
 import ActionBar from "./ActionBar";
 
-function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState }) {
-    const [state, setState] = useState({ imageIsReady: false, imageSource: '' });
+function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState }) {
+    const [imgState, setImgState] = useState({ imageIsReady: false, imageSource: '' });
     const background = localStorage.getItem(book.name + "_background");
     const backgroundUrl = 'url(data:image/png;base64,' + background + ')';
 
     useEffect(() => {
         const img = new Image();
         img.onload = () => {
-            setState({ imageIsReady: true, imageSource: img.src });
+            setImgState({ imageIsReady: true, imageSource: img.src });
         }
         img.src = 'http://localhost:8080/file/download/' + book.name + '.png';
     }, [book.name]);
@@ -41,7 +41,8 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
                            isBookReading={book.reading.flag}
                            isBookToRead={book.toRead.flag}
                            isBookFavourite={book.favourite.flag}
-                           changeState={changeState}/>
+                           changeState={changeState}
+                           setState={setState}/>
             </div>
         </div>
     );

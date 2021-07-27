@@ -2,7 +2,7 @@ import React from "react";
 import InfoTitle from "../info/InfoTitle";
 import './styles/CreateQuote.css'
 
-function CreateQuote({ addNewQuote, currentBookId }) {
+function CreateQuote({ addNewQuote, currentBookId, setState, setAddQuoteActive, setNotificationActive, setNotificationMessage }) {
     return (
         <div>
             <InfoTitle className={"optionTitle"} name={'Новая цитата'}/>
@@ -20,7 +20,7 @@ function CreateQuote({ addNewQuote, currentBookId }) {
             }}
             <div className={"addBookButton transition"} onClick={() => {
                 const quote = document.getElementById('addQuoteField').value;
-                addNewQuote({content: quote, bookId: currentBookId})
+                addNewQuote({content: quote, bookId: currentBookId}, setState, setAddQuoteActive, setNotificationActive, setNotificationMessage);
             }}>Добавить цитату</div>
         </div>
     );

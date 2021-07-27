@@ -2,7 +2,7 @@ import InfoTitle from "../info/InfoTitle";
 import React from "react";
 import './styles/CreateCritique.css'
 
-function CreateCritique({ addNewCritique, currentBookId }) {
+function CreateCritique({ addNewCritique, currentBookId, setState, setAddCritiqueActive }) {
     return (
         <div>
             <InfoTitle className={"optionTitle"} name={'Новая рецензия'}/>
@@ -23,7 +23,8 @@ function CreateCritique({ addNewCritique, currentBookId }) {
 
             <div className={"addCritiqueButton transition"} onClick={() => {
                 const critique = document.getElementById('addCritiqueField').value;
-                addNewCritique({content: critique, bookId: currentBookId})
+                addNewCritique({content: critique, bookId: currentBookId}, setState)
+                setAddCritiqueActive(false);
             }
             }>Добавить рецензию
             </div>
