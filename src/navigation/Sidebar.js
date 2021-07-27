@@ -6,7 +6,7 @@ function Sidebar() {
     return <div className={"sidebar"}>
         <img style={{marginTop: '-15px'}} src={"/logo.png"}/>
         <Selection name={"Книжная полка"} buttonImage={"/shelve.png"}/>
-        <Selection name={"Желания"} buttonImage={"/desires.png"}/>
+        <Selection name={"Желанное"} buttonImage={"/desires.png"}/>
         <Selection name={"Избранное"} buttonImage={"/favourite.png"}/>
         <Selection name={"Прочитанное"} buttonImage={"/read.png"}/>
         <Selection name={"Текущее"} buttonImage={"/timed.png"}/>

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ActionBar({ setAddQuoteActive, setAddCritiqueActive, bookId, setCurrentBookId, isBookRead, isBookReading, isBookToRead, isBookFavourite, changeState, setState }) {
+function ActionBar({ setAddQuoteActive, setAddCritiqueActive, bookId, setCurrentBookId, isBookRead, isBookReading, isBookToRead, isBookFavourite, changeState, setState, setNotificationActive, setNotificationMessage }) {
     return (
         <div className={"actionBar transition"} onClick={e => e.stopPropagation()}>
             <img src={"/quoteOption.png"} className={"img transition"} onClick={() => {
@@ -13,16 +13,16 @@ function ActionBar({ setAddQuoteActive, setAddCritiqueActive, bookId, setCurrent
             }}/>
             <img src={"/delimiter.png"} className={"img transition"}/>
             <img src={isBookFavourite ? "/favouriteOptionActive.png": "/favouriteOption.png"} className={"img transition"} onClick={() => {
-                changeState(!isBookFavourite, "FAVOURITE", bookId, setState);
+                changeState(!isBookFavourite, "FAVOURITE", bookId, setState, setNotificationActive, setNotificationMessage);
             }}/>
             <img src={isBookRead ? "/readOptionActive.png": "/readOption.png"} className={"img transition"} onClick={() => {
-                changeState(!isBookRead, "READ", bookId, setState);
+                changeState(!isBookRead, "READ", bookId, setState, setNotificationActive, setNotificationMessage);
             }}/>
             <img src={isBookReading ? "/readingOptionActive.png" : "/readingOption.png"} className={"img transition"} onClick={() => {
-                changeState(!isBookReading, "READING", bookId, setState);
+                changeState(!isBookReading, "READING", bookId, setState, setNotificationActive, setNotificationMessage);
             }}/>
             <img src={isBookToRead ? "/toReadOptionActive.png": "/toReadOption.png"} className={"img transition"} onClick={() => {
-                changeState(!isBookToRead, "TO_READ", bookId, setState);
+                changeState(!isBookToRead, "TO_READ", bookId, setState, setNotificationActive, setNotificationMessage);
             }}/>
         </div>
     )

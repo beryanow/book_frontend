@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './styles/Book.css'
 import ActionBar from "./ActionBar";
 
-function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState }) {
+function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage }) {
     const [imgState, setImgState] = useState({ imageIsReady: false, imageSource: '' });
     const background = localStorage.getItem(book.name + "_background");
     const backgroundUrl = 'url(data:image/png;base64,' + background + ')';
@@ -42,7 +42,9 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
                            isBookToRead={book.toRead.flag}
                            isBookFavourite={book.favourite.flag}
                            changeState={changeState}
-                           setState={setState}/>
+                           setState={setState}
+                           setNotificationActive={setNotificationActive}
+                           setNotificationMessage={setNotificationMessage}/>
             </div>
         </div>
     );
