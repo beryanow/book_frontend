@@ -51,6 +51,9 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
             setNotificationActive(false);
         }, notificationMessageSeconds);
     });
+    document.getElementById('bookFieldName').value = '';
+    document.getElementById('bookFieldAuthor').value = '';
+    document.getElementById('bookFieldImage').value = '';
 }
 
 function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotificationActive, setNotificationMessage) {
@@ -91,6 +94,7 @@ function addNewQuote(newQuoteState, setState, setAddQuoteActive, setNotification
             setNotificationActive(false);
         }, notificationMessageSeconds);
     });
+    document.getElementById('addQuoteField').value = '';
 }
 
 function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNotificationActive, setNotificationMessage) {
@@ -111,6 +115,7 @@ function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNot
             setNotificationActive(false);
         }, notificationMessageSeconds);
     });
+    document.getElementById('addCritiqueField').value = '';
 }
 
 function changeState(flag, option, bookId, setState, setNotificationActive, setNotificationMessage) {
