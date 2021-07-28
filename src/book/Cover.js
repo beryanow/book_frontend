@@ -13,13 +13,13 @@ const Card = ReactLazyPreload(() =>
 );
 
 function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type }) {
-    let title;
+    let title = "Книжная полка";
     switch (type) {
-        case "shelf":
-            title = "Книжная полка";
-            break;
         case "to-read":
             title = "Желанные книги";
+            break;
+        case "favourite":
+            title = "Избранные книги";
             break;
     }
 

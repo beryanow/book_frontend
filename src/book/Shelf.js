@@ -21,17 +21,14 @@ function updateBooks(setState, type) {
 }
 
 function fetchRelevantBooksData(setState, type) {
-    let getRelevantBooksUrl;
+    let getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
 
     switch (type) {
-        case "shelf":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
-            break;
         case "to-read":
             getRelevantBooksUrl = 'http://localhost:8080/book/get-all-to-read';
             break;
-        default:
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
+        case "favourite":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-favourite';
             break;
     }
 
@@ -234,8 +231,6 @@ function Shelf({type}) {
     const [selectionBook, setSelectionBook] = useState({});
     const [currentBookId, setCurrentBookId] = useState("");
     const [notificationMessage, setNotificationMessage] = useState("");
-
-    downloadImage("Собор");
 
     useEffect(() => {
         fetchRelevantBooksData(setState, type);
