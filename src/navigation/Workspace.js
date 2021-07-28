@@ -1,7 +1,7 @@
 import React from "react";
 import Cover from "../book/Cover";
 
-function Workspace({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage }) {
+function Workspace({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type }) {
     return (
         <div className={"workspace"}>
             {books ? <Cover books={books}
@@ -16,7 +16,8 @@ function Workspace({ books, setDescriptionActive, setSelectionBook, setAddBookAc
                             changeState={changeState}
                             setState={setState}
                             setNotificationActive={setNotificationActive}
-                            setNotificationMessage={setNotificationMessage}/> : null}
+                            setNotificationMessage={setNotificationMessage}
+                            type={type}/> : null}
         </div>
     );
 }

@@ -12,10 +12,20 @@ const Card = ReactLazyPreload(() =>
     import("./Card")
 );
 
-function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage }) {
+function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type }) {
+    let title;
+    switch (type) {
+        case "shelf":
+            title = "Книжная полка";
+            break;
+        case "to-read":
+            title = "Желанные книги";
+            break;
+    }
+
     return (
         <div>
-            <Title name={"Книжная полка"}/>
+            <Title name={title}/>
             <div className={"cover"}>
                 {books.map(book => <Card key={book.id}
                                          book={book}
@@ -29,7 +39,8 @@ function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive
                                          changeState={changeState}
                                          setState={setState}
                                          setNotificationActive={setNotificationActive}
-                                         setNotificationMessage={setNotificationMessage}/>
+                                         setNotificationMessage={setNotificationMessage}
+                                         type={type}/>
                 )}
                 <NewCard setAddBookActive={setAddBookActive}/>
             </div>

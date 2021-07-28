@@ -3,7 +3,7 @@ import InfoTitle from "./InfoTitle";
 import InputField from "./InputField";
 import InputFileField from "./InputFileField";
 
-function AddBook({ addNewBook, uploadImage, setState, setAddBookActive, setNotificationActive, setNotificationMessage }) {
+function AddBook({ addNewBook, uploadImage, setState, setAddBookActive, setNotificationActive, setNotificationMessage, type }) {
     return (
         <div className={"addBook"}>
             <InfoTitle className={"optionTitle"} name={'Новая книга'}/>
@@ -19,7 +19,7 @@ function AddBook({ addNewBook, uploadImage, setState, setAddBookActive, setNotif
                 const fileName = name + ".png";
 
                 uploadImage(document.getElementById('bookFieldImage').files[0], fileName);
-                addNewBook({name, author, fileName}, setState, setAddBookActive, setNotificationActive, setNotificationMessage);
+                addNewBook({name, author, fileName}, setState, setAddBookActive, setNotificationActive, setNotificationMessage, type);
             }
             }>Добавить книгу
             </div>

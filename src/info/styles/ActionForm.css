@@ -38,9 +38,9 @@
     width: 50%;
 }
 
-.notificationForm {
-    width: 50%;
-}
+/*.notificationForm {*/
+/*    width: 100%;*/
+/*}*/
 
 .description.active {
     opacity: 1;
