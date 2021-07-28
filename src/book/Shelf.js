@@ -50,6 +50,7 @@ function fetchRelevantBooksData(setState, type) {
 
 function addNewBook(newBookState, setState, setAddBookActive, setNotificationActive, setNotificationMessage, type) {
     const addNewBookUrl = 'http://localhost:8080/book/add';
+
     axios.post(addNewBookUrl, newBookState).then(() => {
         updateBooks(setState, type);
         setAddBookActive(false);
@@ -66,6 +67,7 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
             setNotificationActive(false);
         }, notificationMessageSeconds);
     });
+
     document.getElementById('bookFieldName').value = '';
     document.getElementById('bookFieldAuthor').value = '';
     document.getElementById('bookFieldImage').value = '';

@@ -9,9 +9,6 @@ function Sidebar() {
         <Link to={"/shelf"}>
             <Selection name={"Книжная полка"} buttonImage={"/shelve.png"}/>
         </Link>
-        <Link to={"/to-read"}>
-            <Selection name={"Желанное"} buttonImage={"/desires.png"}/>
-        </Link>
         <Link to={"/favourite"}>
             <Selection name={"Избранное"} buttonImage={"/favourite.png"}/>
         </Link>
@@ -20,6 +17,9 @@ function Sidebar() {
         </Link>
         <Link to={"/reading"}>
             <Selection name={"Текущее"} buttonImage={"/timed.png"}/>
+        </Link>
+        <Link to={"/to-read"}>
+            <Selection name={"Желанное"} buttonImage={"/desires.png"}/>
         </Link>
         <Link to={"/quote"}>
             <Selection name={"Цитаты"} buttonImage={"/quote.png"}/>

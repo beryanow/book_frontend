@@ -19,9 +19,28 @@ function AddBook({ addNewBook, uploadImage, setState, setAddBookActive, setNotif
                 const fileName = name + ".png";
 
                 uploadImage(document.getElementById('bookFieldImage').files[0], fileName);
-                addNewBook({name, author, fileName}, setState, setAddBookActive, setNotificationActive, setNotificationMessage, type);
-            }
-            }>Добавить книгу
+
+                const bookState = {name, author, fileName};
+                switch (type) {
+                    case "shelf":
+                        bookState.stateOption = "NOT_SET";
+                        break;
+                    case "favourite":
+                        bookState.stateOption = "FAVOURITE";
+                        break;
+                    case "read":
+                        bookState.stateOption = "READ";
+                        break;
+                    case "reading":
+                        bookState.stateOption = "READING";
+                        break;
+                    case "to-read":
+                        bookState.stateOption = "TO_READ";
+                        break;
+                }
+
+                addNewBook(bookState, setState, setAddBookActive, setNotificationActive, setNotificationMessage, type);
+            }}>Добавить книгу
             </div>
         </div>
     );
