@@ -24,6 +24,12 @@ function fetchRelevantBooksData(setState, type) {
     let getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
 
     switch (type) {
+        case "read":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-read';
+            break;
+        case "reading":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-reading';
+            break;
         case "to-read":
             getRelevantBooksUrl = 'http://localhost:8080/book/get-all-to-read';
             break;
