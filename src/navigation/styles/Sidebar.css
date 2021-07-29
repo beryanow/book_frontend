@@ -24,9 +24,23 @@
     width: 200px;
 }
 
-.selection:hover {
-    filter: brightness(0.8);
+.selectionActive {
+    display: block;
+    background-color: #d4aaaa;
+    border-radius: 10px;
+    height: 52px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color: #2b1614;
+    font-weight: bold;
+    font-size: 85%;
+    width: 200px;
 }
+
+/*.selection:hover {*/
+/*    filter: brightness(0.8);*/
+/*}*/
 
 .transition {
     transition: 200ms;

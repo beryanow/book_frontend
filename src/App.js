@@ -39,6 +39,12 @@ function App({history}) {
         );
     };
 
+    const RatingWrapped = function (props) {
+        return (
+            <Shelf {...props} type={"rating"}/>
+        );
+    };
+
     return (
         <Switch>
             <Route history={history} path='/shelf' component={ShelveWrapped}/>
@@ -46,6 +52,7 @@ function App({history}) {
             <Route history={history} path='/reading' component={ReadingWrapped}/>
             <Route history={history} path='/to-read' component={ToReadWrapped}/>
             <Route history={history} path='/favourite' component={FavouriteWrapped}/>
+            <Route history={history} path='/rating' component={RatingWrapped}/>
             <Redirect from='/' to='/shelf'/>
         </Switch>
     );

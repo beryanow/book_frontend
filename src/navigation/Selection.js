@@ -1,10 +1,16 @@
 import React from "react";
 
-function Selection({ buttonImage, name }) {
+function Selection({buttonImage, name, active}) {
     return (
         <table>
             <tbody>
-            <tr className={"selection transition"}>
+            <tr onMouseEnter={() => {
+                document.getElementById(name).style.transition = '200ms';
+                document.getElementById(name).style.filter = 'brightness(0.8)';
+            }} onMouseLeave={() => {
+                document.getElementById(name).style.transition = '200ms';
+                document.getElementById(name).style.filter = 'brightness(1)';
+            }} id={name} className={active ? "selectionActive" : "selection" + " transition"}>
                 <td className={"selectionElement"}>
                     <div>
                         <img src={buttonImage}/>

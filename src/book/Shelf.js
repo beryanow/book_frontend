@@ -206,7 +206,11 @@ function changeState(flag, option, bookId, setState, setNotificationActive, setN
                 notificationMessage = "Не удалось добавить книгу в избранное";
                 break;
             case "READ":
-                notificationMessage = "Не удалось добавить книгу в прочитанное";
+                if (rating !== "0") {
+                    notificationMessage = "Не удалось изменить оценку книги";
+                } else {
+                    notificationMessage = "Не удалось добавить книгу в прочитанное";
+                }
                 break;
             case "READING":
                 notificationMessage = "Не удалось добавить книгу в текущее";
@@ -336,7 +340,7 @@ function Shelf({type}) {
                                     type={type}/>
                 </ActionForm>
 
-                <Sidebar/>
+                <Sidebar type={type}/>
                 <Workspace books={state.books}
                            setDescriptionActive={setDescriptionActive}
                            setSelectionBook={setSelectionBook}
