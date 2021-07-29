@@ -167,10 +167,14 @@ function changeState(flag, option, bookId, setState, setNotificationActive, setN
                 }
                 break;
             case "READ":
-                if (flag) {
-                    notificationMessage = "Книга добавлена в прочитанное";
+                if (rating !== "0") {
+                    notificationMessage = "Оценка книги изменена успешно";
                 } else {
-                    notificationMessage = "Книга удалена из прочитанного";
+                    if (flag) {
+                        notificationMessage = "Книга добавлена в прочитанное";
+                    } else {
+                        notificationMessage = "Книга удалена из прочитанного";
+                    }
                 }
                 break;
             case "READING":

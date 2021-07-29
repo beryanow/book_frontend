@@ -34,21 +34,23 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
                 </div>
 
                 {book.read.flag ? book.read.rating !== null ? <div className={"rating"} onClick={e => e.stopPropagation()}>
-                    {Array(parseInt(book.read.rating)).fill(0).map((_ , index) => <img onMouseEnter={() => {
+                    {Array(5).fill(0).map((_ , index) => <img onMouseEnter={() => {
                         for (let i = 0; i <= index; i++) {
-                            document.getElementById("star_" + i).src = "/star_choose.png";
+                            document.getElementById(book.name + "_star_" + i).src = "/star_choose.png";
                         }
                         for (let i = index + 1; i < 5; i++) {
-                            document.getElementById("star_" + i).src = "/star.png";
+                            document.getElementById(book.name + "_star_" + i).src = "/star.png";
                         }
                     }} onMouseLeave={() => {
                         for (let i = 0; i < parseInt(book.read.rating); i++) {
-                            document.getElementById("star_" + i).src = "/star_active.png";
+                            document.getElementById(book.name + "_star_" + i).src = "/star_active.png";
                         }
                         for (let i = parseInt(book.read.rating); i < 5 - parseInt(book.read.rating); i++) {
-                            document.getElementById("star_" + i).src = "/star.png";
+                            document.getElementById(book.name + "_star_" + i).src = "/star.png";
                         }
-                    }} className={"star"} src={index < parseInt(book.read.rating) ? "/star_active.png" : "/star.png"} id={"star_" + index}/>)}
+                    }} onClick={() => {
+                        changeState(book.read.flag, "READ", book.id, setState, setNotificationActive, setNotificationMessage, type, (index + 1).toString());
+                    }} className={"star"} src={index < parseInt(book.read.rating) ? "/star_active.png" : "/star.png"} id={book.name + "_star_" + index}/>)}
                 </div> : <div className={"rating"}/> : null}
 
                 <ActionBar setAddQuoteActive={setAddQuoteActive}

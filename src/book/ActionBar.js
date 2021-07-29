@@ -16,7 +16,7 @@ function ActionBar({ setAddQuoteActive, setAddCritiqueActive, bookId, setCurrent
                 changeState(!isBookFavourite, "FAVOURITE", bookId, setState, setNotificationActive, setNotificationMessage, type, null);
             }}/>
             <img src={isBookRead ? "/readOptionActive.png": "/readOption.png"} className={"img transition"} onClick={() => {
-                changeState(!isBookRead, "READ", bookId, setState, setNotificationActive, setNotificationMessage, type, null);
+                changeState(!isBookRead, "READ", bookId, setState, setNotificationActive, setNotificationMessage, type, "0");
             }}/>
             <img src={isBookReading ? "/readingOptionActive.png" : "/readingOption.png"} className={"img transition"} onClick={() => {
                 changeState(!isBookReading, "READING", bookId, setState, setNotificationActive, setNotificationMessage, type, null);

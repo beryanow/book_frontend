@@ -107,6 +107,11 @@
     margin-right: -3px;
 }
 
+.transitioning-src {
+    transition: opacity 0.4s ease-out;
+    opacity: 0;
+}
+
 .removeLabel {
     position: absolute;
     border-radius: 30px;
