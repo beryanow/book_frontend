@@ -93,6 +93,20 @@
     color: white;
 }
 
+.rating {
+    background-color: white;
+    border-radius: 20px;
+    height: 20px;
+    width: 93px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.star {
+    margin-left: 2px;
+    margin-right: -3px;
+}
+
 .removeLabel {
     position: absolute;
     border-radius: 30px;

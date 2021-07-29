@@ -40,6 +40,7 @@ function fetchRelevantBooksData(setState, type) {
 
     axios.post(getRelevantBooksUrl).then((books) => {
         const booksFound = books.data;
+
         books.data.forEach(book => {
             downloadImage(book.name);
         });
@@ -53,9 +54,11 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
 
     axios.post(addNewBookUrl, newBookState).then(() => {
         updateBooks(setState, type);
+
         setAddBookActive(false);
         setNotificationActive(true);
         setNotificationMessage("Книга успешно добавлена");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -63,6 +66,7 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
         setAddBookActive(false);
         setNotificationActive(true);
         setNotificationMessage("Не удалось добавить книгу");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -75,11 +79,14 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
 
 function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotificationActive, setNotificationMessage, type) {
     const removeBookUrl = 'http://localhost:8080/book/remove';
+
     axios.post(removeBookUrl, currentBookIdState).then(() => {
         updateBooks(setState, type);
+
         setRemoveBookActive(false);
         setNotificationActive(true);
         setNotificationMessage("Книга успешно удалена");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -87,6 +94,7 @@ function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotifi
         setRemoveBookActive(false);
         setNotificationActive(true);
         setNotificationMessage("Не удалось удалить книгу");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -95,11 +103,14 @@ function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotifi
 
 function addNewQuote(newQuoteState, setState, setAddQuoteActive, setNotificationActive, setNotificationMessage, type) {
     const addNewQuoteUrl = 'http://localhost:8080/quote/add';
+
     axios.post(addNewQuoteUrl, newQuoteState).then(() => {
         updateBooks(setState, type);
+
         setAddQuoteActive(false);
         setNotificationActive(true);
         setNotificationMessage("Цитата добавлена успешно");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -107,6 +118,7 @@ function addNewQuote(newQuoteState, setState, setAddQuoteActive, setNotification
         setAddQuoteActive(false);
         setNotificationActive(true);
         setNotificationMessage("Не удалось добавить цитату");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -116,11 +128,14 @@ function addNewQuote(newQuoteState, setState, setAddQuoteActive, setNotification
 
 function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNotificationActive, setNotificationMessage, type) {
     const addNewCritiqueUrl = 'http://localhost:8080/critique/add';
+
     axios.post(addNewCritiqueUrl, newCritiqueState).then(() => {
         updateBooks(setState, type);
+
         setAddCritiqueActive(false);
         setNotificationActive(true);
         setNotificationMessage("Рецензия добавлена успешно");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -128,6 +143,7 @@ function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNot
         setAddCritiqueActive(false);
         setNotificationActive(true);
         setNotificationMessage("Не удалось добавить рецензию");
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -135,9 +151,10 @@ function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNot
     document.getElementById('addCritiqueField').value = '';
 }
 
-function changeState(flag, option, bookId, setState, setNotificationActive, setNotificationMessage, type) {
+function changeState(flag, option, bookId, setState, setNotificationActive, setNotificationMessage, type, rating) {
     const changeStateUrl = 'http://localhost:8080/state/change';
-    axios.post(changeStateUrl, {flag, option, bookId}).then(() => {
+
+    axios.post(changeStateUrl, {flag, option, bookId, rating}).then(() => {
         updateBooks(setState, type);
 
         let notificationMessage;
@@ -174,6 +191,7 @@ function changeState(flag, option, bookId, setState, setNotificationActive, setN
 
         setNotificationActive(true);
         setNotificationMessage(notificationMessage);
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -196,6 +214,7 @@ function changeState(flag, option, bookId, setState, setNotificationActive, setN
 
         setNotificationActive(true);
         setNotificationMessage(notificationMessage);
+
         setTimeout(() => {
             setNotificationActive(false);
         }, notificationMessageSeconds);
@@ -207,6 +226,7 @@ function downloadImage(imageName) {
 
     if (localStorage.getItem(imageBackgroundName) === null) {
         const addNewCritiqueUrl = 'http://localhost:8080/file/download/' + imageName + '.png';
+
         axios.get(addNewCritiqueUrl, {
             responseType: 'arraybuffer'
         }).then((result) => {
