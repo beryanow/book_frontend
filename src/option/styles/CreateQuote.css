@@ -13,3 +13,7 @@
     margin-right: 15px;
     resize:none
 }
+
+* {
+    word-break: break-word;
+}

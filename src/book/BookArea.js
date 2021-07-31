@@ -11,6 +11,7 @@ import Workspace from "../navigation/Workspace";
 import styled, {keyframes} from "styled-components";
 import {fadeIn} from "react-animations";
 import axios from "axios";
+import localforage from "localforage";
 
 const notificationMessageSeconds = 1500;
 
@@ -25,6 +26,7 @@ function fetchRelevantBooksData(setState, type) {
 
     switch (type) {
         case "read":
+        case "rating":
             getRelevantBooksUrl = 'http://localhost:8080/book/get-all-read';
             break;
         case "reading":
@@ -35,6 +37,12 @@ function fetchRelevantBooksData(setState, type) {
             break;
         case "favourite":
             getRelevantBooksUrl = 'http://localhost:8080/book/get-all-favourite';
+            break;
+        case "quote":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-quoted';
+            break;
+        case "critique":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-critiqued';
             break;
     }
 
@@ -231,17 +239,41 @@ function changeState(flag, option, bookId, setState, setNotificationActive, setN
 
 function downloadImage(imageName) {
     let imageBackgroundName = imageName + '_background';
+    let imageBlurBackgroundName = imageName + '_blur_background';
 
-    if (localStorage.getItem(imageBackgroundName) === null) {
-        const addNewCritiqueUrl = 'http://localhost:8080/file/download/' + imageName + '.png';
+    let localforageValue;
+    localforage.getItem(imageBackgroundName, function (err, value) {
+        // console.log("Локал стораж: " + value !== null ? value.substr(0, 5) : "no");
+        // console.log("WUT: " + value);
+        if (value === null) {
+            const downloadUrl = 'http://localhost:8080/file/download/' + imageName + '.png';
 
-        axios.get(addNewCritiqueUrl, {
-            responseType: 'arraybuffer'
-        }).then((result) => {
-            localStorage.setItem(imageBackgroundName, Buffer.from(result.data, 'binary').toString('base64'));
-            console.log("Скачано изображение: " + imageName + ".png")
-        });
-    }
+            axios.get(downloadUrl, {
+                responseType: 'arraybuffer'
+            }).then((result) => {
+                localforage.setItem(imageBackgroundName, Buffer.from(result.data, 'binary').toString('base64'), function(err, value) {
+                    console.log("Добавлено изображение в базу: " + imageName + ".png");
+                });
+                console.log("Скачано изображение: " + imageName + ".png")
+            });
+        }
+    });
+
+    localforage.getItem(imageBlurBackgroundName, function(err, value) {
+        // console.log("Локал стораж1: " + value !== null ? value.substr(0, 5) : "no");
+        if (value === null) {
+            const downloadBlurUrl = 'http://localhost:8080/file/download/' + imageName + '_blur.png';
+
+            axios.get(downloadBlurUrl, {
+                responseType: 'arraybuffer'
+            }).then((result) => {
+                localforage.setItem(imageBlurBackgroundName, Buffer.from(result.data, 'binary').toString('base64'), function(err, value) {
+                    console.log("Добавлено изображение в базу: " + imageName + "_blur.png");
+                });
+                console.log("Скачано размытое изображение: " + imageName + "_blur.png")
+            });
+        }
+    });
 }
 
 function uploadImage(image, name) {
@@ -256,7 +288,7 @@ function uploadImage(image, name) {
     });
 }
 
-function Shelf({type}) {
+function BookArea({type}) {
     const [state, setState] = useState({ books: [] });
     const [notificationActive, setNotificationActive] = useState(false);
     const [descriptionActive, setDescriptionActive] = useState(false);
@@ -360,4 +392,4 @@ function Shelf({type}) {
     );
 }
 
-export default Shelf;
+export default BookArea;

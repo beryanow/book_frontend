@@ -1,5 +1,5 @@
 import React from "react";
-import Shelf from "./book/Shelf";
+import BookArea from "./book/BookArea";
 
 import {
     Route,
@@ -7,41 +7,60 @@ import {
     Redirect,
     withRouter
 } from "react-router-dom"
+import localforage from "localforage";
 
 function App({history}) {
     const ShelveWrapped = function (props) {
         return (
-            <Shelf {...props} type={"shelf"}/>
+            <BookArea {...props} type={"shelf"}/>
         );
     };
 
     const ReadWrapped = function (props) {
         return (
-            <Shelf {...props} type={"read"}/>
+            <BookArea {...props} type={"read"}/>
         );
     };
 
     const ReadingWrapped = function (props) {
         return (
-            <Shelf {...props} type={"reading"}/>
+            <BookArea {...props} type={"reading"}/>
         );
     };
 
     const ToReadWrapped = function (props) {
         return (
-            <Shelf {...props} type={"to-read"}/>
+            <BookArea {...props} type={"to-read"}/>
         );
     };
 
     const FavouriteWrapped = function (props) {
         return (
-            <Shelf {...props} type={"favourite"}/>
+            <BookArea {...props} type={"favourite"}/>
+        );
+    };
+
+    const QuoteWrapped = function (props) {
+        return (
+            <BookArea {...props} type={"quote"}/>
         );
     };
 
     const RatingWrapped = function (props) {
         return (
-            <Shelf {...props} type={"rating"}/>
+            <BookArea {...props} type={"rating"}/>
+        );
+    };
+
+    const CritiqueWrapped = function (props) {
+        return (
+            <BookArea {...props} type={"critique"}/>
+        );
+    };
+
+    const AuthorWrapped = function (props) {
+        return (
+            <BookArea {...props} type={"author"}/>
         );
     };
 
@@ -52,7 +71,10 @@ function App({history}) {
             <Route history={history} path='/reading' component={ReadingWrapped}/>
             <Route history={history} path='/to-read' component={ToReadWrapped}/>
             <Route history={history} path='/favourite' component={FavouriteWrapped}/>
+            <Route history={history} path='/quote' component={QuoteWrapped}/>
             <Route history={history} path='/rating' component={RatingWrapped}/>
+            <Route history={history} path='/critique' component={CritiqueWrapped}/>
+            <Route history={history} path='/author' component={AuthorWrapped}/>
             <Redirect from='/' to='/shelf'/>
         </Switch>
     );

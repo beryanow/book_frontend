@@ -24,11 +24,11 @@ function Sidebar({type}) {
         <Link to={"/quote"}>
             <Selection name={"Цитаты"} buttonImage={"/quote.png"} active={type === "quote"}/>
         </Link>
-        <Link to={"/rating"}>
-            <Selection name={"Оценки"} buttonImage={"/assessment.png"} active={type === "rating"}/>
-        </Link>
         <Link to={"/critique"}>
             <Selection name={"Рецензии"} buttonImage={"/reviews.png"} active={type === "critique"}/>
+        </Link>
+        <Link to={"/rating"}>
+            <Selection name={"Оценки"} buttonImage={"/assessment.png"} active={type === "rating"}/>
         </Link>
         <Link to={"/author"}>
             <Selection name={"Авторы"} buttonImage={"/authors.png"} active={type === "author"}/>
