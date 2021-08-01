@@ -3,6 +3,7 @@ import './styles/Book.css'
 import ActionBar from "./ActionBar";
 import localforage from "localforage";
 import Rating from "./Rating";
+import ReadDate from "./ReadDate";
 
 async function getItemFromLocalforage(type, book, setBackground) {
     const item = await localforage.getItem(book.name !== undefined ? book.name + type : null);
@@ -47,6 +48,9 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
                                                                       setNotificationActive={setNotificationActive}
                                                                       setNotificationMessage={setNotificationMessage}
                                                                       type={type}/>
+                    : <div className={"rating"}/> : null}
+
+                {book.read.flag ? book.read.createdDate !== null ? <ReadDate className={"date"} date={book.read.createdDate}/>
                     : <div className={"rating"}/> : null}
 
                 <ActionBar setAddQuoteActive={setAddQuoteActive}

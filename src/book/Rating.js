@@ -5,7 +5,7 @@ function Rating({changeState, book, setState, setNotificationActive, setNotifica
         <div className={"ratingOnly"} onClick={e => e.stopPropagation()}>
             {Array(5).fill(0).map((_, index) => <img onMouseEnter={() => {
                 for (let i = 0; i <= index; i++) {
-                    document.getElementById(book.name + "_star_" + i).src = "/star_choose.png";
+                    document.getElementById(book.name + "_star_" + i).src = "/starChoose.png";
                 }
                 for (let i = index + 1; i < 5; i++) {
                     document.getElementById(book.name + "_star_" + i).src = "/star.png";
@@ -15,14 +15,17 @@ function Rating({changeState, book, setState, setNotificationActive, setNotifica
                     document.getElementById(book.name + "_star_" + i).src = "/star.png";
                 }
                 for (let i = 0; i < parseInt(book.read.rating); i++) {
-                    document.getElementById(book.name + "_star_" + i).src = "/star_active.png";
+                    document.getElementById(book.name + "_star_" + i).src = "/starActive.png";
                 }
                 for (let i = parseInt(book.read.rating); i < 5 - parseInt(book.read.rating); i++) {
                     document.getElementById(book.name + "_star_" + i).src = "/star.png";
                 }
             }} onClick={() => {
+                for (let i = 0; i <= index; i++) {
+                    document.getElementById(book.name + "_star_" + i).src = "/starActive.png";
+                }
                 changeState(book.read.flag, "READ", book.id, setState, setNotificationActive, setNotificationMessage, type, (index + 1).toString());
-            }} className={"star"} src={index < parseInt(book.read.rating) ? "/star_active.png" : "/star.png"} id={book.name + "_star_" + index}/>)}
+            }} className={"star"} src={index < parseInt(book.read.rating) ? "/starActive.png" : "/star.png"} id={book.name + "_star_" + index}/>)}
         </div>
     );
 }

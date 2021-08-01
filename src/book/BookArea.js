@@ -21,6 +21,37 @@ function updateBooks(setState, type) {
     fetchRelevantBooksData(setState, type);
 }
 
+async function fetchRelevantBooksAmount(type) {
+    let getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
+
+    switch (type) {
+        case "read":
+        case "rating":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-read';
+            break;
+        case "reading":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-reading';
+            break;
+        case "to-read":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-to-read';
+            break;
+        case "favourite":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-favourite';
+            break;
+        case "quote":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-quoted';
+            break;
+        case "critique":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-critiqued';
+            break;
+        case "author":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-author-grouped';
+            break;
+    }
+
+    return await axios.post(getRelevantBooksUrl);
+}
+
 function fetchRelevantBooksData(setState, type) {
     let getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
 
@@ -44,14 +75,23 @@ function fetchRelevantBooksData(setState, type) {
         case "critique":
             getRelevantBooksUrl = 'http://localhost:8080/book/get-all-critiqued';
             break;
+        case "author":
+            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-author-grouped';
+            break;
     }
 
     axios.post(getRelevantBooksUrl).then((books) => {
         const booksFound = books.data;
 
-        books.data.forEach(book => {
-            downloadImage(book.name);
-        });
+        if (type !== "author") {
+            books.data.forEach(book => {
+                downloadImage(book.name);
+            });
+        } else {
+            Object.keys(books.data).forEach(author => {
+                books.data[author].forEach(book => downloadImage(book.name));
+            });
+        }
 
         setState({ books: booksFound });
     });
@@ -372,7 +412,8 @@ function BookArea({type}) {
                                     type={type}/>
                 </ActionForm>
 
-                <Sidebar type={type}/>
+                <Sidebar type={type}
+                         fetchRelevantBooksAmount={fetchRelevantBooksAmount}/>
                 <Workspace books={state.books}
                            setDescriptionActive={setDescriptionActive}
                            setSelectionBook={setSelectionBook}

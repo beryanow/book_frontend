@@ -27,7 +27,32 @@ function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemov
                                                       setNotificationActive={setNotificationActive}
                                                       setNotificationMessage={setNotificationMessage}/>
                 )}
-            </div>;
+            </div>
+        case "author":
+            return Object.keys(books).map(author =>
+                <div>
+                    <Title name={author}/>
+                    <div className={"ulQuote"}>
+                        {books[author].map(book => <QuoteCritiqueInfo book={book}
+                                                                      type={type}
+                                                                      changeState={changeState}
+                                                                      setState={setState}
+                                                                      setNotificationActive={setNotificationActive}
+                                                                      setNotificationMessage={setNotificationMessage}/>
+                        )}
+                    </div>
+                </div>
+            );
+        case "book":
+            return <div className={"ulQuote"}>
+                {books.map(book => <QuoteCritiqueInfo book={book}
+                                                      type={type}
+                                                      changeState={changeState}
+                                                      setState={setState}
+                                                      setNotificationActive={setNotificationActive}
+                                                      setNotificationMessage={setNotificationMessage}/>
+                )}
+            </div>
         default:
             return <div className={"cover"}>
                 {books.map(book => <Card key={book.id}

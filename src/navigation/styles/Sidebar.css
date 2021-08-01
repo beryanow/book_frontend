@@ -26,13 +26,13 @@
 
 .selectionActive {
     display: block;
-    background-color: #adadad;
+    background-color: #32080e;
     border-radius: 10px;
     height: 52px;
     margin-top: 10px;
     margin-left: 20px;
     margin-right: 20px;
-    color: #2b1614;
+    color: #ffffff;
     font-weight: bold;
     font-size: 85%;
     width: 200px;
@@ -48,6 +48,14 @@
 
 .selectionElement {
     padding-left: 12px;
+}
+
+.counterVisible {
+    opacity: 1;
+}
+
+.counterInvisible {
+    opacity: 0;
 }
 
 .selectionElement div {

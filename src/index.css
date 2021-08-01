@@ -17,3 +17,12 @@ code {
   margin: 0 auto;
   width: 600px;
 }
+
+*:active,
+*:hover {
+  cursor: default;
+}
+
+*::selection {
+  opacity: 0;
+}
