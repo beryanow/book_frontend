@@ -80,7 +80,7 @@ function DetailedInfo({ selectionBook }) {
 
             {pagedQuotes !== undefined && pagedQuotes.length !== 0 ?
                 <div className={"quoteCover"}
-                     style={{backgroundImage: blurBackgroundUrl}}>
+                     style={{backgroundImage: blurBackgroundUrl, paddingTop: "15px"}}>
                     {pagedQuotes.map(quote =>
                         <div>
                             <CardElementField key={quote.id}
