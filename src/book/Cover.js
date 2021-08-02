@@ -14,7 +14,7 @@ const Card = ReactLazyPreload(() =>
     import("./Card")
 );
 
-function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, setAddBookActive) {
+function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, setAddBookActive, setCurrentQuoteId, setRemoveQuoteActive) {
     switch (type) {
         case "quote":
         case "critique":
@@ -25,7 +25,9 @@ function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemov
                                                       changeState={changeState}
                                                       setState={setState}
                                                       setNotificationActive={setNotificationActive}
-                                                      setNotificationMessage={setNotificationMessage}/>
+                                                      setNotificationMessage={setNotificationMessage}
+                                                      setCurrentQuoteId={setCurrentQuoteId}
+                                                      setRemoveQuoteActive={setRemoveQuoteActive}/>
                 )}
             </div>
         case "author":
@@ -38,7 +40,9 @@ function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemov
                                                                       changeState={changeState}
                                                                       setState={setState}
                                                                       setNotificationActive={setNotificationActive}
-                                                                      setNotificationMessage={setNotificationMessage}/>
+                                                                      setNotificationMessage={setNotificationMessage}
+                                                                      setCurrentQuoteId={setCurrentQuoteId}
+                                                                      setRemoveQuoteActive={setRemoveQuoteActive}/>
                         )}
                     </div>
                 </div>
@@ -50,7 +54,9 @@ function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemov
                                                       changeState={changeState}
                                                       setState={setState}
                                                       setNotificationActive={setNotificationActive}
-                                                      setNotificationMessage={setNotificationMessage}/>
+                                                      setNotificationMessage={setNotificationMessage}
+                                                      setCurrentQuoteId={setCurrentQuoteId}
+                                                      setRemoveQuoteActive={setRemoveQuoteActive}/>
                 )}
             </div>
         default:
@@ -74,7 +80,7 @@ function TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemov
             </div>
     }
 }
-function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type }) {
+function Cover({books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type, setCurrentQuoteId, setRemoveQuoteActive}) {
     let title = "Книжная полка";
     switch (type) {
         case "read":
@@ -111,7 +117,7 @@ function Cover({ books, setDescriptionActive, setSelectionBook, setAddBookActive
                 <img src={"/user.jpg"} width={"45px"} height={"45px"} style={{marginTop: "30px", marginRight: "20px", borderRadius: "40px"}}/>
             </div>
 
-            {TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, setAddBookActive)}
+            {TypedZone(type, books, setDescriptionActive, setSelectionBook, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, setAddBookActive, setCurrentQuoteId, setRemoveQuoteActive)}
         </div>
     );
 }

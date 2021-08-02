@@ -10,7 +10,7 @@ async function getItemFromLocalforage(type, book, setBackground) {
     setBackground(item);
 }
 
-function DetailedInfo({ selectionBook }) {
+function DetailedInfo({ setDescriptionActive, selectionBook, setEditQuoteActive, setEditCritiqueActive, setRemoveCritiqueActive, setCurrentCritiqueId, setRemoveQuoteActive, setCurrentQuoteId }) {
     const quotesPerPageAmount = 2;
     const quotesLength = selectionBook.quotes !== undefined ? selectionBook.quotes.length : 0;
     const quoteIndicatorsAmount = Math.ceil(quotesLength / quotesPerPageAmount);
@@ -71,8 +71,24 @@ function DetailedInfo({ selectionBook }) {
                      style={{backgroundImage: blurBackgroundUrl}}>
                     <CardElementField content={critique.content}
                                       className={"critique"}/>
-                    <ReadDate date={critique.createdDate}
-                              className={"dateInfo"}/>
+                    <div style={{display: "flex", marginTop: "10px"}}>
+                        <div className={"removeLabelQuote transition"}>
+                            <img className={"imgQuote transition"} src={"/editLabel.png"}
+                                 onClick={() => {
+                                     setCurrentCritiqueId(critique.id);
+                                     setEditCritiqueActive(true);
+                                     setDescriptionActive(false);
+                                 }}/>
+                            <img className={"imgQuote transition"} src={"/removeLabelDarker.png"}
+                                 onClick={() => {
+                                     setCurrentCritiqueId(critique.id);
+                                     setRemoveCritiqueActive(true);
+                                     setDescriptionActive(false);
+                                 }}/>
+                        </div>
+                        <ReadDate date={critique.lastUpdatedDate}
+                                  className={"dateInfo"}/>
+                    </div>
                 </div> : null
             }
 
@@ -83,11 +99,28 @@ function DetailedInfo({ selectionBook }) {
                      style={{backgroundImage: blurBackgroundUrl, paddingTop: "15px"}}>
                     {pagedQuotes.map(quote =>
                         <div>
-                            <CardElementField key={quote.id}
-                                              content={quote.content}
-                                              className={"quote"}/>
-                            <ReadDate date={quote.createdDate}
-                                      className={"dateInfo"}/>
+                            <div><CardElementField key={quote.id}
+                                                   content={quote.content}
+                                                   className={"quote"}/>
+                            </div>
+                            <div style={{display: "flex", marginTop: "10px"}}>
+                                <div className={"removeLabelQuote transition"}>
+                                    <img className={"imgQuote transition"} src={"/editLabel.png"}
+                                         onClick={() => {
+                                             setCurrentQuoteId(quote.id);
+                                             setEditQuoteActive(true);
+                                             setDescriptionActive(false);
+                                         }}/>
+                                    <img className={"imgQuote transition"} src={"/removeLabelDarker.png"}
+                                         onClick={() => {
+                                             setCurrentQuoteId(quote.id);
+                                             setRemoveQuoteActive(true);
+                                             setDescriptionActive(false);
+                                         }}/>
+                                </div>
+                                <ReadDate date={quote.lastUpdatedDate}
+                                          className={"dateInfo"}/>
+                            </div>
                         </div>)}
 
                     <div>

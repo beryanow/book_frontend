@@ -26,6 +26,22 @@
     width: 25%;
 }
 
+.removeQuoteForm {
+    width: 25%;
+}
+
+.removeCritiqueForm {
+    width: 25%;
+}
+
+.editCritiqueForm {
+    width: 25%;
+}
+
+.editQuoteForm {
+    width: 25%;
+}
+
 .addQuoteForm {
     width: 25%;
 }

@@ -12,6 +12,10 @@ import styled, {keyframes} from "styled-components";
 import {fadeIn} from "react-animations";
 import axios from "axios";
 import localforage from "localforage";
+import RemoveQuote from "../info/RemoveQuote";
+import RemoveCritique from "../info/RemoveCritique";
+import EditCritique from "../info/EditCritique";
+import EditQuote from "../info/EditQuote";
 
 const notificationMessageSeconds = 1500;
 
@@ -142,6 +146,106 @@ function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotifi
         setRemoveBookActive(false);
         setNotificationActive(true);
         setNotificationMessage("Не удалось удалить книгу");
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    });
+}
+
+function removeQuote(currentQuoteIdState, setState, setRemoveQuoteActive, setNotificationActive, setNotificationMessage, type) {
+    const removeQuoteUrl = 'http://localhost:8080/quote/remove';
+
+    axios.post(removeQuoteUrl, currentQuoteIdState).then(() => {
+        updateBooks(setState, type);
+
+        setRemoveQuoteActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Цитата успешно удалена");
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    }).catch(reason => {
+        setRemoveQuoteActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Не удалось удалить цитату");
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    });
+}
+
+function removeCritique(currentCritiqueIdState, setState, setRemoveCritiqueActive, setNotificationActive, setNotificationMessage, type) {
+    const removeCritiqueUrl = 'http://localhost:8080/critique/remove';
+
+    axios.post(removeCritiqueUrl, currentCritiqueIdState).then(() => {
+        updateBooks(setState, type);
+
+        setRemoveCritiqueActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Рецензия успешно удалена");
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    }).catch(reason => {
+        setRemoveCritiqueActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Не удалось удалить рецензию");
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    });
+}
+
+function editCritique(currentChangeCritiqueIdState, setState, setEditCritiqueActive, setNotificationActive, setNotificationMessage, type) {
+    const editCritiqueUrl = 'http://localhost:8080/critique/edit';
+
+    axios.post(editCritiqueUrl, currentChangeCritiqueIdState).then(() => {
+        updateBooks(setState, type);
+
+        setEditCritiqueActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Рецензия успешно изменена");
+
+        document.getElementById('editCritiqueField').value = "";
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    }).catch(reason => {
+        setEditCritiqueActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Не удалось изменить рецензию");
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    });
+}
+
+function editQuote(currentChangeQuoteIdState, setState, setEditQuoteActive, setNotificationActive, setNotificationMessage, type) {
+    const editQuoteUrl = 'http://localhost:8080/quote/edit';
+
+    axios.post(editQuoteUrl, currentChangeQuoteIdState).then(() => {
+        updateBooks(setState, type);
+
+        setEditQuoteActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Цитата успешно изменена");
+
+        document.getElementById('editCritiqueField').value = "";
+
+        setTimeout(() => {
+            setNotificationActive(false);
+        }, notificationMessageSeconds);
+    }).catch(reason => {
+        setEditQuoteActive(false);
+        setNotificationActive(true);
+        setNotificationMessage("Не удалось изменить цитату");
 
         setTimeout(() => {
             setNotificationActive(false);
@@ -334,10 +438,16 @@ function BookArea({type}) {
     const [descriptionActive, setDescriptionActive] = useState(false);
     const [addBookActive, setAddBookActive] = useState(false);
     const [removeBookActive, setRemoveBookActive] = useState(false);
+    const [removeQuoteActive, setRemoveQuoteActive] = useState(false);
+    const [removeCritiqueActive, setRemoveCritiqueActive] = useState(false);
+    const [editCritiqueActive, setEditCritiqueActive] = useState(false);
+    const [editQuoteActive, setEditQuoteActive] = useState(false);
     const [addQuoteActive, setAddQuoteActive] = useState(false);
     const [addCritiqueActive, setAddCritiqueActive] = useState(false);
     const [selectionBook, setSelectionBook] = useState({});
     const [currentBookId, setCurrentBookId] = useState("");
+    const [currentQuoteId, setCurrentQuoteId] = useState("");
+    const [currentCritiqueId, setCurrentCritiqueId] = useState("");
     const [notificationMessage, setNotificationMessage] = useState("");
 
     useEffect(() => {
@@ -357,7 +467,15 @@ function BookArea({type}) {
                 <ActionForm active={descriptionActive}
                             setActive={setDescriptionActive}
                             formType={"exploreBookForm"}>
-                    <DetailedInfo selectionBook={selectionBook}/>
+                    <DetailedInfo setDescriptionActive={setDescriptionActive}
+                                  removeQuoteActive={removeQuoteActive}
+                                  setRemoveQuoteActive={setRemoveQuoteActive}
+                                  selectionBook={selectionBook}
+                                  setRemoveCritiqueActive={setRemoveCritiqueActive}
+                                  setCurrentCritiqueId={setCurrentCritiqueId}
+                                  setCurrentQuoteId={setCurrentQuoteId}
+                                  setEditCritiqueActive={setEditCritiqueActive}
+                                  setEditQuoteActive={setEditQuoteActive}/>
                 </ActionForm>
 
                 {/* Окно добавления новой книги */}
@@ -385,6 +503,61 @@ function BookArea({type}) {
                                 setNotificationMessage={setNotificationMessage}
                                 type={type}/>
                 </ActionForm>
+
+                {/* Окно удаления цитаты */}
+                <ActionForm active={removeQuoteActive}
+                            setActive={setRemoveQuoteActive}
+                            formType={"removeQuoteForm"}>
+                    <RemoveQuote currentQuoteId={currentQuoteId}
+                                 removeQuote={removeQuote}
+                                 setState={setState}
+                                 setRemoveQuoteActive={setRemoveQuoteActive}
+                                 setNotificationActive={setNotificationActive}
+                                 setNotificationMessage={setNotificationMessage}
+                                 type={type}/>
+                </ActionForm>
+
+                {/* Окно удаления рецензии */}
+                <ActionForm active={removeCritiqueActive}
+                            setActive={setRemoveCritiqueActive}
+                            formType={"removeCritiqueForm"}>
+                    <RemoveCritique currentCritiqueId={currentCritiqueId}
+                                 removeCritique={removeCritique}
+                                 setState={setState}
+                                 setRemoveCritiqueActive={setRemoveCritiqueActive}
+                                 setNotificationActive={setNotificationActive}
+                                 setNotificationMessage={setNotificationMessage}
+                                 type={type}/>
+                </ActionForm>
+
+                {/* Окно редактирования рецензии */}
+                <ActionForm active={editCritiqueActive}
+                            setActive={setEditCritiqueActive}
+                            formType={"editCritiqueForm"}>
+                    <EditCritique currentCritiqueId={currentCritiqueId}
+                                  editCritique={editCritique}
+                                  setState={setState}
+                                  setEditCritiqueActive={setEditCritiqueActive}
+                                  setNotificationActive={setNotificationActive}
+                                  setNotificationMessage={setNotificationMessage}
+                                  selectionBook={selectionBook}
+                                  type={type}/>
+                </ActionForm>
+
+                {/* Окно редактирования цитаты */}
+                <ActionForm active={editQuoteActive}
+                            setActive={setEditQuoteActive}
+                            formType={"editQuoteForm"}>
+                    <EditQuote currentQuoteId={currentQuoteId}
+                               editQuote={editQuote}
+                               setState={setState}
+                               setEditQuoteActive={setEditQuoteActive}
+                               setNotificationActive={setNotificationActive}
+                               setNotificationMessage={setNotificationMessage}
+                               selectionBook={selectionBook}
+                               type={type}/>
+                </ActionForm>
+
 
                 {/* Окно добавления цитаты для книги */}
                 <ActionForm active={addQuoteActive}
@@ -427,7 +600,9 @@ function BookArea({type}) {
                            setState={setState}
                            setNotificationActive={setNotificationActive}
                            setNotificationMessage={setNotificationMessage}
-                           type={type}/>
+                           type={type}
+                           setCurrentQuoteId={setCurrentQuoteId}
+                           setRemoveQuoteActive={setRemoveQuoteActive}/>
             </FadeIn>
         </Suspense>
     );
