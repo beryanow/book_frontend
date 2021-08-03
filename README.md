@@ -31,5 +31,5 @@
 ![](screenshots/BookExample.png)
 
 ## Демо
-https://user-images.githubusercontent.com/33306395/127952407-eef986fc-136f-4950-8aa3-7460f05f482a.mp4
+![](https://user-images.githubusercontent.com/33306395/127952407-eef986fc-136f-4950-8aa3-7460f05f482a.mp4)
 
