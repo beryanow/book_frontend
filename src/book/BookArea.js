@@ -605,7 +605,8 @@ function BookArea({type}) {
                            setRemoveQuoteActive={setRemoveQuoteActive}
                            setCurrentCritiqueId={setCurrentCritiqueId}
                            setEditCritiqueActive={setEditCritiqueActive}
-                           setEditQuoteActive={setEditQuoteActive}/>
+                           setEditQuoteActive={setEditQuoteActive}
+                           setRemoveCritiqueActive={setRemoveCritiqueActive}/>
             </FadeIn>
         </Suspense>
     );

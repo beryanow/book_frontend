@@ -39,7 +39,7 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
                     e.stopPropagation();
                     setCurrentBookId(book.id);
                 }}>
-                    <img onClick={() => setRemoveBookActive(true)} src={"/removeLabel.png"}/>
+                    <img className={"imgQuote transition"} onClick={() => setRemoveBookActive(true)} src={"/removeLabel.png"}/>
                 </div>
 
                 {book.read.flag ? book.read.rating !== null ? <Rating book={book}
