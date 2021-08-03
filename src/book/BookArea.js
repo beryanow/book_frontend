@@ -602,7 +602,10 @@ function BookArea({type}) {
                            setNotificationMessage={setNotificationMessage}
                            type={type}
                            setCurrentQuoteId={setCurrentQuoteId}
-                           setRemoveQuoteActive={setRemoveQuoteActive}/>
+                           setRemoveQuoteActive={setRemoveQuoteActive}
+                           setCurrentCritiqueId={setCurrentCritiqueId}
+                           setEditCritiqueActive={setEditCritiqueActive}
+                           setEditQuoteActive={setEditQuoteActive}/>
             </FadeIn>
         </Suspense>
     );

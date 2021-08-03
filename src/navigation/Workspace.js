@@ -1,7 +1,7 @@
 import React from "react";
 import Cover from "../book/Cover";
 
-function Workspace({books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type, setCurrentQuoteId, setRemoveQuoteActive}) {
+function Workspace({books, setDescriptionActive, setSelectionBook, setAddBookActive, setRemoveBookActive, setCurrentBookId, setAddQuoteActive, addNewQuote, setAddCritiqueActive, changeState, setState, setNotificationActive, setNotificationMessage, type, setCurrentQuoteId, setRemoveQuoteActive, setCurrentCritiqueId, setEditCritiqueActive, setEditQuoteActive}) {
     function TypedArea() {
         return books ? <Cover books={books}
                               setDescriptionActive={setDescriptionActive}
@@ -18,7 +18,10 @@ function Workspace({books, setDescriptionActive, setSelectionBook, setAddBookAct
                               setState={setState}
                               setNotificationActive={setNotificationActive}
                               setNotificationMessage={setNotificationMessage}
-                              type={type}/> : null
+                              type={type}
+                              setCurrentCritiqueId={setCurrentCritiqueId}
+                              setEditCritiqueActive={setEditCritiqueActive}
+                              setEditQuoteActive={setEditQuoteActive}/> : null
 
     }
 
