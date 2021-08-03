@@ -30,7 +30,7 @@
 
 ![](screenshots/BookExample.png)
 
-## Демо (Youtube)
+## Демо (YouTube)
 https://www.youtube.com/watch?v=G4fg3KUWvnY
 
 ## Демо (GIF)
