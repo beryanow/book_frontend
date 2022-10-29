@@ -117,6 +117,7 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
     }).catch(reason => {
         setAddBookActive(false);
         setNotificationActive(true);
+
         setNotificationMessage("Не удалось добавить книгу");
 
         setTimeout(() => {
