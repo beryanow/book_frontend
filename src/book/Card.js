@@ -21,7 +21,7 @@ function Card({ book, setDescriptionActive, setSelectionBook, setRemoveBookActiv
         const img = new Image();
         img.onload = () => {
         }
-        img.src = 'http://localhost:8080/file/download/' + book.name + '.png';
+        img.src = 'http://5.101.50.241:8080/file/download/' + book.name + '.png';
     }, [book.name]);
 
     return (

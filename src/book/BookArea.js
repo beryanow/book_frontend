@@ -26,30 +26,30 @@ function updateBooks(setState, type) {
 }
 
 async function fetchRelevantBooksAmount(type) {
-    let getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
+    let getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all';
 
     switch (type) {
         case "read":
         case "rating":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-read';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-read';
             break;
         case "reading":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-reading';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-reading';
             break;
         case "to-read":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-to-read';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-to-read';
             break;
         case "favourite":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-favourite';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-favourite';
             break;
         case "quote":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-quoted';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-quoted';
             break;
         case "critique":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-critiqued';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-critiqued';
             break;
         case "author":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-author-grouped';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-author-grouped';
             break;
     }
 
@@ -57,30 +57,30 @@ async function fetchRelevantBooksAmount(type) {
 }
 
 function fetchRelevantBooksData(setState, type) {
-    let getRelevantBooksUrl = 'http://localhost:8080/book/get-all';
+    let getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all';
 
     switch (type) {
         case "read":
         case "rating":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-read';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-read';
             break;
         case "reading":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-reading';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-reading';
             break;
         case "to-read":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-to-read';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-to-read';
             break;
         case "favourite":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-favourite';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-favourite';
             break;
         case "quote":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-quoted';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-quoted';
             break;
         case "critique":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-critiqued';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-critiqued';
             break;
         case "author":
-            getRelevantBooksUrl = 'http://localhost:8080/book/get-all-author-grouped';
+            getRelevantBooksUrl = 'http://5.101.50.241:8080/book/get-all-author-grouped';
             break;
     }
 
@@ -102,7 +102,7 @@ function fetchRelevantBooksData(setState, type) {
 }
 
 function addNewBook(newBookState, setState, setAddBookActive, setNotificationActive, setNotificationMessage, type) {
-    const addNewBookUrl = 'http://localhost:8080/book/add';
+    const addNewBookUrl = 'http://5.101.50.241:8080/book/add';
 
     axios.post(addNewBookUrl, newBookState).then(() => {
         updateBooks(setState, type);
@@ -130,7 +130,7 @@ function addNewBook(newBookState, setState, setAddBookActive, setNotificationAct
 }
 
 function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotificationActive, setNotificationMessage, type) {
-    const removeBookUrl = 'http://localhost:8080/book/remove';
+    const removeBookUrl = 'http://5.101.50.241:8080/book/remove';
 
     axios.post(removeBookUrl, currentBookIdState).then(() => {
         updateBooks(setState, type);
@@ -154,7 +154,7 @@ function removeBook(currentBookIdState, setState, setRemoveBookActive, setNotifi
 }
 
 function removeQuote(currentQuoteIdState, setState, setRemoveQuoteActive, setNotificationActive, setNotificationMessage, type) {
-    const removeQuoteUrl = 'http://localhost:8080/quote/remove';
+    const removeQuoteUrl = 'http://5.101.50.241:8080/quote/remove';
 
     axios.post(removeQuoteUrl, currentQuoteIdState).then(() => {
         updateBooks(setState, type);
@@ -178,7 +178,7 @@ function removeQuote(currentQuoteIdState, setState, setRemoveQuoteActive, setNot
 }
 
 function removeCritique(currentCritiqueIdState, setState, setRemoveCritiqueActive, setNotificationActive, setNotificationMessage, type) {
-    const removeCritiqueUrl = 'http://localhost:8080/critique/remove';
+    const removeCritiqueUrl = 'http://5.101.50.241:8080/critique/remove';
 
     axios.post(removeCritiqueUrl, currentCritiqueIdState).then(() => {
         updateBooks(setState, type);
@@ -202,7 +202,7 @@ function removeCritique(currentCritiqueIdState, setState, setRemoveCritiqueActiv
 }
 
 function editCritique(currentChangeCritiqueIdState, setState, setEditCritiqueActive, setNotificationActive, setNotificationMessage, type) {
-    const editCritiqueUrl = 'http://localhost:8080/critique/edit';
+    const editCritiqueUrl = 'http://5.101.50.241:8080/critique/edit';
 
     axios.post(editCritiqueUrl, currentChangeCritiqueIdState).then(() => {
         updateBooks(setState, type);
@@ -228,7 +228,7 @@ function editCritique(currentChangeCritiqueIdState, setState, setEditCritiqueAct
 }
 
 function editQuote(currentChangeQuoteIdState, setState, setEditQuoteActive, setNotificationActive, setNotificationMessage, type) {
-    const editQuoteUrl = 'http://localhost:8080/quote/edit';
+    const editQuoteUrl = 'http://5.101.50.241:8080/quote/edit';
 
     axios.post(editQuoteUrl, currentChangeQuoteIdState).then(() => {
         updateBooks(setState, type);
@@ -254,7 +254,7 @@ function editQuote(currentChangeQuoteIdState, setState, setEditQuoteActive, setN
 }
 
 function addNewQuote(newQuoteState, setState, setAddQuoteActive, setNotificationActive, setNotificationMessage, type) {
-    const addNewQuoteUrl = 'http://localhost:8080/quote/add';
+    const addNewQuoteUrl = 'http://5.101.50.241:8080/quote/add';
 
     axios.post(addNewQuoteUrl, newQuoteState).then(() => {
         updateBooks(setState, type);
@@ -279,7 +279,7 @@ function addNewQuote(newQuoteState, setState, setAddQuoteActive, setNotification
 }
 
 function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNotificationActive, setNotificationMessage, type) {
-    const addNewCritiqueUrl = 'http://localhost:8080/critique/add';
+    const addNewCritiqueUrl = 'http://5.101.50.241:8080/critique/add';
 
     axios.post(addNewCritiqueUrl, newCritiqueState).then(() => {
         updateBooks(setState, type);
@@ -304,7 +304,7 @@ function addNewCritique(newCritiqueState, setState, setAddCritiqueActive, setNot
 }
 
 function changeState(flag, option, bookId, setState, setNotificationActive, setNotificationMessage, type, rating) {
-    const changeStateUrl = 'http://localhost:8080/state/change';
+    const changeStateUrl = 'http://5.101.50.241:8080/state/change';
 
     axios.post(changeStateUrl, {flag, option, bookId, rating}).then(() => {
         updateBooks(setState, type);
@@ -390,7 +390,7 @@ function downloadImage(imageName) {
         // console.log("Локал стораж: " + value !== null ? value.substr(0, 5) : "no");
         // console.log("WUT: " + value);
         if (value === null) {
-            const downloadUrl = 'http://localhost:8080/file/download/' + imageName + '.png';
+            const downloadUrl = 'http://5.101.50.241:8080/file/download/' + imageName + '.png';
 
             axios.get(downloadUrl, {
                 responseType: 'arraybuffer'
@@ -406,7 +406,7 @@ function downloadImage(imageName) {
     localforage.getItem(imageBlurBackgroundName, function(err, value) {
         // console.log("Локал стораж1: " + value !== null ? value.substr(0, 5) : "no");
         if (value === null) {
-            const downloadBlurUrl = 'http://localhost:8080/file/download/' + imageName + '_blur.png';
+            const downloadBlurUrl = 'http://5.101.50.241:8080/file/download/' + imageName + '_blur.png';
 
             axios.get(downloadBlurUrl, {
                 responseType: 'arraybuffer'
@@ -425,7 +425,7 @@ function uploadImage(image, name) {
     const blob = image.slice(0, image.size, 'image/png');
     formData.append("file", new File([blob], name, {type: 'image/png'}));
 
-    const uploadImageUrl = 'http://localhost:8080/file/upload';
+    const uploadImageUrl = 'http://5.101.50.241:8080/file/upload';
 
     axios.post(uploadImageUrl, formData).then(() => {
         console.log("Загружен файл " + name);
