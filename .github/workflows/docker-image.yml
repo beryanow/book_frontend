@@ -20,3 +20,4 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
     - name: Push the Docker image
       run: docker push msberyanov/book-library-frontend
+
