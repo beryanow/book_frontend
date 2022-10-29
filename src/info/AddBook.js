@@ -18,7 +18,7 @@ function AddBook({ addNewBook, uploadImage, setState, setAddBookActive, setNotif
                 const author = document.getElementById('bookFieldAuthor').value;
                 const fileName = name + ".png";
 
-                uploadImage(document.getElementById('bookFieldImage').files[0], fileName);
+                // uploadImage(document.getElementById('bookFieldImage').files[0], fileName);
 
                 const bookState = {name, author, fileName};
                 switch (type) {
